@@ -13,7 +13,7 @@ var fs = require('fs');
 // Get arguments
 INPUT = process.argv[2];
 OUTPUT = process.argv[3];
-CONFIG = (process.argv[4]) ? require(process.argv[4]) : {};
+CONFIG = (process.argv[4]) ? require(process.cwd + process.argv[4]) : {};
 VERBOSE = (process.argv[5]) ? true : false;
 
 // Check arguments
