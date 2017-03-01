@@ -9,12 +9,11 @@ var showdown  = require('showdown'),
  * Use fs to perform filesystem operations
  */
 var fs = require('fs');
-var runned_from = require('path').dirname(require.main.filename);
 
 // Get arguments
 INPUT = process.argv[2];
 OUTPUT = process.argv[3];
-CONFIG = (process.argv[4]) ? require(require('path').resolve(runned_from, process.argv[4])) : {};
+CONFIG = (process.argv[4]) ? require( require('path').resolve(process.cwd(), process.argv[4]) ) : {};
 VERBOSE = (process.argv[5]) ? true : false;
 
 // Check arguments
