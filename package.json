@@ -4,7 +4,7 @@
   "description": "Use 'showdown' with folders",
   "main": "index.js",
   "bin": {
-    "batch-showdown": "./bin/batch-showdown"
+    "batch-showdown": "./bin/batch-showdown.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
