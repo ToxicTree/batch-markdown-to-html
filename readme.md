@@ -1,6 +1,6 @@
 # batch-showdown <a href="https://www.npmjs.com/package/batch-showdown"><img src="https://img.shields.io/npm/v/batch-showdown.svg" alt="Version"></a>
 
-A small node.js script that takes a folder path to markdown files and then generate html files using [markdown](https://www.npmjs.com/package/markdown).
+A small node.js script that takes a folder path to markdown files and then generate html files using [showdown](https://www.npmjs.com/package/showdown).
 
 See configuration on how to include css and js into the generated files.
 
