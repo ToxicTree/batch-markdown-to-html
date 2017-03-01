@@ -13,11 +13,12 @@ var fs = require('fs');
 // Get arguments
 INPUT = process.argv[2];
 OUTPUT = process.argv[3];
-VERBOSE = (process.argv[4]) ? true : false;
+CONFIG = (process.argv[4]) ? require(process.argv[4]) : {};
+VERBOSE = (process.argv[5]) ? true : false;
 
 // Check arguments
 if (!INPUT || !OUTPUT)
-    return console.log('Usage: batch-markdown-to-html <source_folder> <destination_folder> [Verbose?]');
+    return console.log('Usage: batch-showdown <source_folder> <destination_folder> [config_file] [Verbose?]');
 
 // Get batch ready
 var batch = [],
@@ -94,7 +95,31 @@ var generate = function(entry){
             var data = fs.readFileSync(entry[i].path) + ' ';
 
             // Generate HTML
-            entry[i].html = converter.makeHtml(data);
+            var html_content = converter.makeHtml(data);
+
+            // Create wrappers
+            var head = ['<head>', '', '</head>'];
+            var body = ['<body>', '', '</body>'];
+
+            // Insert CSS into head
+            if (CONFIG.css)
+                for (var c=0 ; c<CONFIG.css.length ; c++)
+                    head[1] = head[1] + "<link rel='stylesheet' href='"+CONFIG.css[c]+"'>"
+
+            // Insert generated html into body
+            body[1] = html_content;
+
+            // Append scripts to body
+            if (CONFIG.js)
+                for (var j=0 ; j<CONFIG.js.length ; j++)
+                    body[1] = body[1] + "<script src='"+CONFIG.js[j]+"'></script>"
+
+            // Insert head and body into html
+            var result = "<html>" + head.join('') + body.join('') + "</html>";
+
+            // Put html into entry
+            entry[i].html = result;
+
             if (VERBOSE) {
                 console.log( entry[i].html )
             }
