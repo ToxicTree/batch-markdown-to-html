@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Use 'showdown' with folders",
   "main": "index.js",
+  "bin": {
+    "batch-showdown": "./bin/batch-showdown"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
