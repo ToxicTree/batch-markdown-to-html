@@ -114,6 +114,10 @@ var generate = function(entry){
                 for (var j=0 ; j<CONFIG.js.length ; j++)
                     body[1] = body[1] + "<script src='"+CONFIG.js[j]+"'></script>"
 
+            // Append onload js to body
+            if (CONFIG.onload)
+                body[1] = body[1] + "<script>"+CONFIG.onload+"</script>"
+
             // Insert head and body into html
             var result = "<html>" + head.join('') + body.join('') + "</html>";
 
