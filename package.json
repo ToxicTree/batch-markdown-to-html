@@ -1,5 +1,5 @@
 {
-  "name": "batch-markdown-to-html",
+  "name": "batch-showdown",
   "version": "1.0.0",
   "description": "Use 'showdown' with folders",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ToxicTree/batch-markdown-to-html.git"
+    "url": "git+https://github.com/ToxicTree/batch-showdown.git"
   },
   "keywords": [
     "batch", "folders",
@@ -18,9 +18,9 @@
   "author": "Jonathan (https://github.com/ToxicTree)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ToxicTree/batch-markdown-to-html/issues"
+    "url": "https://github.com/ToxicTree/batch-showdown/issues"
   },
-  "homepage": "https://github.com/ToxicTree/batch-markdown-to-html#readme",
+  "homepage": "https://github.com/ToxicTree/batch-showdown#readme",
   "dependencies": {
     "fs": "0.0.1-security",
     "showdown": "^1.6.4"
