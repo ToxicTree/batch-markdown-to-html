@@ -51,7 +51,8 @@ var ls = function(folder){
         // If it´s a folder, run this recursively
         if (fs.statSync(result.path).isDirectory()){
             result.content = ls(folder+content[c]);
-            results.push(result);
+            if (result.content.length!=0)
+                results.push(result);
             continue;
         }
         // Only grab markdown files
@@ -65,23 +66,8 @@ var ls = function(folder){
 
 batch = ls(INPUT);
 
-// Print batch tree
 if (VERBOSE) {
-    console.log("Source: '"+INPUT+"'  Destination: '"+OUTPUT+"'  Files: "+files);
-    console.log("Batch tree:");
-    var print_tree = function(entry, level){
-        for (var i=0 ; i<entry.length ; i++){
-            var indent = "";
-            for (var d=0 ; d<level ; d++)
-                indent+="  ";
-            console.log(indent+entry[i].name);
-            if (entry[i].content && entry[i].content.length>0){
-                print_tree(entry[i].content,level+1);
-            }
-        }
-    }
-    print_tree(batch, 1);
-    console.log(" ")
+    console.log("Source: '"+INPUT+"'  Destination: '"+OUTPUT+"'  Files: "+files +"\n");
 }
 
 // Generate html
@@ -129,6 +115,7 @@ var generate = function(entry){
 
             if (VERBOSE) {
                 console.log( entry[i].html )
+                console.log( "=============" )
             }
 
             // Check destination
@@ -146,9 +133,39 @@ var generate = function(entry){
     }
 }
 
-generate(batch)
+generate(batch);
+
+// Generate batch tree
+var batch_tree = function(entry, level){
+    var j = []
+    for (var i=0 ; i<entry.length ; i++){
+        // Set indentation
+        var indent = "";
+        for (var d=0 ; d<level ; d++)
+            indent+="  ";
+        // Replace extention to html
+        var name = entry[i].name;
+            name = name.replace('.md', '.html');
+            name = name.replace('.markdown', '.html');
+        // Print
+        if (VERBOSE)
+            console.log(indent+name);
+        if (entry[i].content && entry[i].content.length>0){
+            j.push( batch_tree(entry[i].content,level+1) );
+        }
+        else {
+            j.push(name);
+        }
+    }
+    return j;
+}
+
+var json = batch_tree(batch,1)
+
+// Save reference to tree.json
+fs.writeFileSync( OUTPUT+'/tree.json', JSON.stringify(json) )
 
 if (files==1)
-    console.log("Done! 1 file written.");
+    console.log("\nDone! 1 file written.");
 if (files>1)
-    console.log("Done! "+files+" files written.")
+    console.log("\nDone! "+files+" files written.")
