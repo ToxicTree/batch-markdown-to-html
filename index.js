@@ -137,7 +137,8 @@ generate(batch);
 
 // Generate batch tree
 var batch_tree = function(entry, level){
-    var j = []
+    var o = {};
+    var a = [];
     for (var i=0 ; i<entry.length ; i++){
         // Set indentation
         var indent = "";
@@ -150,17 +151,17 @@ var batch_tree = function(entry, level){
         // Print
         if (VERBOSE)
             console.log(indent+name);
-        if (entry[i].content && entry[i].content.length>0){
-            j.push( batch_tree(entry[i].content,level+1) );
-        }
-        else {
-            j.push(name);
-        }
+        // Add folder or file
+        if (entry[i].content && entry[i].content.length>0)
+            o[name] = batch_tree(entry[i].content, level+1);
+        else
+            a.push(name);
     }
-    return j;
+    o['files'] = a;
+    return o;
 }
 
-var json = batch_tree(batch,1)
+var json = batch_tree(batch, 1);
 
 // Save reference to tree.json
 fs.writeFileSync( OUTPUT+'/tree.json', JSON.stringify(json) )
