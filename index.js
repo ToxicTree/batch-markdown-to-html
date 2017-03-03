@@ -5,6 +5,9 @@
 var showdown  = require('showdown'),
     converter = new showdown.Converter();
 
+    // Github flavor
+    converter.setFlavor('github');
+
 /**
  * Use fs to perform filesystem operations
  */
