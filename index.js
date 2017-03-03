@@ -165,6 +165,7 @@ var json = batch_tree(batch, 1);
 
 // Save reference to tree.json
 fs.writeFileSync( OUTPUT+'/tree.json', JSON.stringify(json) )
+fs.writeFileSync( INPUT+'/tree.json', JSON.stringify(json) )
 
 if (files==1)
     console.log("\nDone! 1 file written.");

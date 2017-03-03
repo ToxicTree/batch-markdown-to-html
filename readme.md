@@ -4,7 +4,7 @@ A small node.js script that takes a folder path to markdown files and then gener
 
 See configuration on how to include css and js into the generated files.
 
-When done, all markdown files will be at the destination as .html files and a reference can be found at <destination>/tree.json
+When done, all markdown files will be at the destination as .html files and a reference can be found at tree.json (in both source and destination folders)
 
 ### Install
 
