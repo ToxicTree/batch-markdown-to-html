@@ -1,6 +1,6 @@
 {
   "name": "batch-showdown",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Use 'showdown' with folders",
   "main": "index.js",
   "bin": {
