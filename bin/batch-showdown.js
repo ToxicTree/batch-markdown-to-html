@@ -1,3 +1,3 @@
 #!/usr/bin/env nodejs
 
-require('./../index.js');
+console.log('hello');
