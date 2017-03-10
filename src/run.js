@@ -42,7 +42,7 @@ var run = function(){
     require('./generateHTML')(batch, files);
 
     // Generate JSON tree
-    var json = require('./generateTree')(batch, 1);
+    var json = require('./generateTREE')(batch, 1);
 
     // Save HTML
     for (var i = 0 ; i < files.length ; i++){
