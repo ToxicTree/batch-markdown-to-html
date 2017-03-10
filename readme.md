@@ -18,7 +18,7 @@ npm install batch-showdown -g
 batch-showdown <source_folder> <destination_folder> [configuration.js] [verbose?]
 
 # Example
-batch-showdown "src/docs" "public/docs" "src/docs/config.js"
+batch-showdown src/docs public/docs
 ```
 
 ### In another project?
@@ -30,7 +30,7 @@ npm install batch-showdown --save
 Make a script in package.json
 ```json
 "scripts":{
-  "docs": "batch-showdown \"src/docs\" \"public/docs\" \"src/docs/config.js\""
+  "docs": "batch-showdown src/docs public/docs"
 }
 ```
 Run script from project folder
@@ -39,8 +39,8 @@ npm run docs
 ```
 
 
-### Configure
-Pass a .js file as third argument.
+### Configure (optional)
+Pass a configuration (.js) file as third argument.
 Configuration looks like this:
 ```js
 module.exports = {
