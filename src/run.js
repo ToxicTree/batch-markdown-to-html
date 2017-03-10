@@ -31,8 +31,9 @@ var run = function(){
     });
 
     // Check configuration file
-    if (CONFIG == '')
+    if (!CONFIG || CONFIG == '')
         CONFIG = {};
+
     else if (fs.existsSync(CONFIG))
         CONFIG = require( path.resolve(process.cwd(), CONFIG) );
 
